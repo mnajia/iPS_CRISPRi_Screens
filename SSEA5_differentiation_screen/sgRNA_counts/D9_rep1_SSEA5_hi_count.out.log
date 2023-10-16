@@ -1,0 +1,4 @@
+[1] "Total reads: 768673"
+[1] "Reads with detectable CACCG TSS motif: 753235 (97.9916037118515%)"
+[1] "Mapping reads to sgRNA library with exact matches"
+[1] "Reads with exact sgRNA matches: 659810 (85.8375408008347%)"
