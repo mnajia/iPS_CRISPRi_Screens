@@ -1,0 +1,314 @@
+INFO  @ Wed, 18 Oct 2023 04:49:30: Parameters: /broad/blainey_lab/Mo/mageck_env/bin/mageck count --output-prefix iPS_SSEA5_D9_CRISPRi --norm-method control --list-seq /broad/blainey_lab/Mo/projects/epigenetic_screens/github/iPS_CRISPRi_Screens/epifactors_sgRNA_library/EpiFactors_CRISPRi_lib_v3_mageck.csv --fastq /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_hi_S2_R1_001.fastq /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_low_S1_R1_001.fastq /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_hi_S4_R1_001.fastq /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_low_S3_R1_001.fastq /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_hi_S6_R1_001.fastq /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_low_S5_R1_001.fastq --sample-label D9_rep1_SSEA5_hi,D9_rep1_SSEA5_low,D9_rep2_SSEA5_hi,D9_rep2_SSEA5_low,D9_rep3_SSEA5_hi,D9_rep3_SSEA5_low --count-pair False --control-sgrna /broad/blainey_lab/Mo/projects/epigenetic_screens/github/iPS_CRISPRi_Screens/epifactors_sgRNA_library/non_targeting_control_sgRNAs_mageck.txt --trim-5 AUTO 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Welcome to MAGeCK v0.5.9.5. Command: count 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Header line of the library file detected; skip the first line ... 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Loading 2219 predefined sgRNAs. 
+WARNING @ Wed, 18 Oct 2023 04:49:30: There are 0 sgRNAs with duplicated sequences. 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Parsing FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_hi_S2_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Determining the trim-5 length of FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_hi_S2_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:30: Processing 0M reads ... 
+INFO  @ Wed, 18 Oct 2023 04:49:32: Read length:75 
+INFO  @ Wed, 18 Oct 2023 04:49:32: Total tested reads: 100001, mapped: 87323(0.8732212677873221) 
+INFO  @ Wed, 18 Oct 2023 04:49:32: --trim-5 test data: (trim_length reads fraction) 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 24	53493	0.6125877489321255 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 23	32830	0.37596051441201056 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 22	676	0.00774137397936397 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 25	155	0.0017750191816588985 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 21	109	0.0012482392954891609 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 20	27	0.0003091968897083243 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 27	7	8.016215659104704e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 19	6	6.871041993518317e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 37	5	5.725868327931931e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 34	3	3.4355209967591584e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 38	3	3.4355209967591584e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 17	2	2.2903473311727723e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 16	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 36	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 30	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 51	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 43	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 26	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: 55	1	1.1451736655863861e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:32: Auto determination of trim5 results: 24,23 
+INFO  @ Wed, 18 Oct 2023 04:49:32: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:32: Processing 0M reads .. 
+INFO  @ Wed, 18 Oct 2023 04:49:35: Total: 768673. 
+INFO  @ Wed, 18 Oct 2023 04:49:35: Mapped: 666955. 
+INFO  @ Wed, 18 Oct 2023 04:49:35: Parsing FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_low_S1_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:35: Determining the trim-5 length of FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_low_S1_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:35: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:35: Processing 0M reads ... 
+INFO  @ Wed, 18 Oct 2023 04:49:37: Read length:75 
+INFO  @ Wed, 18 Oct 2023 04:49:37: Total tested reads: 100001, mapped: 87302(0.8730112698873012) 
+INFO  @ Wed, 18 Oct 2023 04:49:37: --trim-5 test data: (trim_length reads fraction) 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 24	53007	0.6071682206593205 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 23	33348	0.38198437607385854 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 22	645	0.007388146892396509 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 25	130	0.001489083869785343 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 21	100	0.0011454491306041098 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 20	48	0.0005498155826899727 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 19	4	4.5817965224164395e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 18	4	4.5817965224164395e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 27	4	4.5817965224164395e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 28	2	2.2908982612082197e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 30	2	2.2908982612082197e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 37	2	2.2908982612082197e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 17	1	1.1454491306041099e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 29	1	1.1454491306041099e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 15	1	1.1454491306041099e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 55	1	1.1454491306041099e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 35	1	1.1454491306041099e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: 46	1	1.1454491306041099e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:37: Auto determination of trim5 results: 24,23 
+INFO  @ Wed, 18 Oct 2023 04:49:37: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:37: Processing 0M reads .. 
+INFO  @ Wed, 18 Oct 2023 04:49:39: Total: 568402. 
+INFO  @ Wed, 18 Oct 2023 04:49:39: Mapped: 495285. 
+INFO  @ Wed, 18 Oct 2023 04:49:39: Parsing FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_hi_S4_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:39: Determining the trim-5 length of FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_hi_S4_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:39: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:39: Processing 0M reads ... 
+INFO  @ Wed, 18 Oct 2023 04:49:42: Read length:75 
+INFO  @ Wed, 18 Oct 2023 04:49:42: Total tested reads: 100001, mapped: 86673(0.8667213327866722) 
+INFO  @ Wed, 18 Oct 2023 04:49:42: --trim-5 test data: (trim_length reads fraction) 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 24	53248	0.6143551048192633 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 23	32442	0.37430341628880964 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 22	644	0.007430226252696918 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 25	157	0.001811406089554994 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 21	117	0.001349901353362639 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 20	51	0.0005884185386452528 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 30	3	3.461285521442664e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 38	2	2.3075236809617758e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 28	2	2.3075236809617758e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 19	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 47	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 36	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 55	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 43	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 14	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: 18	1	1.1537618404808879e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:42: Auto determination of trim5 results: 24,23 
+INFO  @ Wed, 18 Oct 2023 04:49:42: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:42: Processing 0M reads .. 
+INFO  @ Wed, 18 Oct 2023 04:49:44: Total: 621715. 
+INFO  @ Wed, 18 Oct 2023 04:49:44: Mapped: 536218. 
+INFO  @ Wed, 18 Oct 2023 04:49:44: Parsing FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_low_S3_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:44: Determining the trim-5 length of FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_low_S3_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:44: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:44: Processing 0M reads ... 
+INFO  @ Wed, 18 Oct 2023 04:49:46: Read length:75 
+INFO  @ Wed, 18 Oct 2023 04:49:46: Total tested reads: 100001, mapped: 87753(0.8775212247877521) 
+INFO  @ Wed, 18 Oct 2023 04:49:46: --trim-5 test data: (trim_length reads fraction) 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 24	53569	0.6104520643168895 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 23	33265	0.37907535924697733 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 22	665	0.007578088498398915 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 25	126	0.0014358483470650577 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 21	79	0.0009002541223661869 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 20	36	0.00041024238487573074 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 28	2	2.2791243604207264e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 18	2	2.2791243604207264e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 19	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 48	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 17	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 14	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 26	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 37	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 27	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 53	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: 29	1	1.1395621802103632e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:46: Auto determination of trim5 results: 24,23 
+INFO  @ Wed, 18 Oct 2023 04:49:46: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:46: Processing 0M reads .. 
+INFO  @ Wed, 18 Oct 2023 04:49:48: Total: 711028. 
+INFO  @ Wed, 18 Oct 2023 04:49:48: Mapped: 621287. 
+INFO  @ Wed, 18 Oct 2023 04:49:48: Parsing FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_hi_S6_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:48: Determining the trim-5 length of FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_hi_S6_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:48: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:48: Processing 0M reads ... 
+INFO  @ Wed, 18 Oct 2023 04:49:51: Read length:75 
+INFO  @ Wed, 18 Oct 2023 04:49:51: Total tested reads: 100001, mapped: 86963(0.8696213037869621) 
+INFO  @ Wed, 18 Oct 2023 04:49:51: --trim-5 test data: (trim_length reads fraction) 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 24	53421	0.6142957349677449 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 23	32579	0.37463059002104343 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 22	636	0.007313455147591504 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 25	138	0.0015868817773075905 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 21	121	0.0013913963409725976 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 20	52	0.0005979554523188023 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 27	4	4.599657325529248e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 19	3	3.449742994146936e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 55	2	2.299828662764624e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 32	2	2.299828662764624e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 38	1	1.149914331382312e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 18	1	1.149914331382312e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 34	1	1.149914331382312e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 30	1	1.149914331382312e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: 28	1	1.149914331382312e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:51: Auto determination of trim5 results: 24,23 
+INFO  @ Wed, 18 Oct 2023 04:49:51: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:51: Processing 0M reads .. 
+INFO  @ Wed, 18 Oct 2023 04:49:53: Total: 749665. 
+INFO  @ Wed, 18 Oct 2023 04:49:53: Mapped: 648788. 
+INFO  @ Wed, 18 Oct 2023 04:49:53: Parsing FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_low_S5_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:53: Determining the trim-5 length of FASTQ file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_low_S5_R1_001.fastq... 
+INFO  @ Wed, 18 Oct 2023 04:49:53: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:53: Processing 0M reads ... 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Read length:75 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Total tested reads: 100001, mapped: 87634(0.8763312366876331) 
+INFO  @ Wed, 18 Oct 2023 04:49:56: --trim-5 test data: (trim_length reads fraction) 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 24	53338	0.6086450464431613 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 23	33399	0.3811192003103818 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 22	630	0.00718899057443458 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 25	129	0.0014720314033366045 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 21	87	0.0009927653650409658 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 20	35	0.0003993883652463656 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 27	4	4.5644384599584634e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 19	3	3.4233288449688474e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 26	2	2.2822192299792317e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 34	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 55	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 43	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 18	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 30	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 17	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 36	1	1.1411096149896159e-05 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Auto determination of trim5 results: 24,23 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Possible gRNA lengths:20 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Processing 0M reads .. 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Total: 251545. 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Mapped: 219212. 
+INFO  @ Wed, 18 Oct 2023 04:49:56: 46 out of 46 control sgRNAs are found in count table. 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Loaded 46 control sgRNAs from /broad/blainey_lab/Mo/projects/epigenetic_screens/github/iPS_CRISPRi_Screens/epifactors_sgRNA_library/non_targeting_control_sgRNAs_mageck.txt 
+INFO  @ Wed, 18 Oct 2023 04:49:56: control sgRNAs for normalization:46 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Final size factor: 0.678247097332127 1.1312739277728756 0.8278369158453954 0.8853128211307284 0.7125110277555343 2.4619711691639896 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Summary of file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_hi_S2_R1_001.fastq: 
+INFO  @ Wed, 18 Oct 2023 04:49:56: label	D9_rep1_SSEA5_hi 
+INFO  @ Wed, 18 Oct 2023 04:49:56: reads	768673 
+INFO  @ Wed, 18 Oct 2023 04:49:56: mappedreads	666955 
+INFO  @ Wed, 18 Oct 2023 04:49:56: totalsgrnas	2219 
+INFO  @ Wed, 18 Oct 2023 04:49:56: zerosgrnas	19 
+INFO  @ Wed, 18 Oct 2023 04:49:56: giniindex	0.14893691189717617 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Summary of file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep1_SSEA5_low_S1_R1_001.fastq: 
+INFO  @ Wed, 18 Oct 2023 04:49:56: label	D9_rep1_SSEA5_low 
+INFO  @ Wed, 18 Oct 2023 04:49:56: reads	568402 
+INFO  @ Wed, 18 Oct 2023 04:49:56: mappedreads	495285 
+INFO  @ Wed, 18 Oct 2023 04:49:56: totalsgrnas	2219 
+INFO  @ Wed, 18 Oct 2023 04:49:56: zerosgrnas	35 
+INFO  @ Wed, 18 Oct 2023 04:49:56: giniindex	0.16834085817463884 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Summary of file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_hi_S4_R1_001.fastq: 
+INFO  @ Wed, 18 Oct 2023 04:49:56: label	D9_rep2_SSEA5_hi 
+INFO  @ Wed, 18 Oct 2023 04:49:56: reads	621715 
+INFO  @ Wed, 18 Oct 2023 04:49:56: mappedreads	536218 
+INFO  @ Wed, 18 Oct 2023 04:49:56: totalsgrnas	2219 
+INFO  @ Wed, 18 Oct 2023 04:49:56: zerosgrnas	9 
+INFO  @ Wed, 18 Oct 2023 04:49:56: giniindex	0.140811822752691 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Summary of file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep2_SSEA5_low_S3_R1_001.fastq: 
+INFO  @ Wed, 18 Oct 2023 04:49:56: label	D9_rep2_SSEA5_low 
+INFO  @ Wed, 18 Oct 2023 04:49:56: reads	711028 
+INFO  @ Wed, 18 Oct 2023 04:49:56: mappedreads	621287 
+INFO  @ Wed, 18 Oct 2023 04:49:56: totalsgrnas	2219 
+INFO  @ Wed, 18 Oct 2023 04:49:56: zerosgrnas	12 
+INFO  @ Wed, 18 Oct 2023 04:49:56: giniindex	0.14105231938605034 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Summary of file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_hi_S6_R1_001.fastq: 
+INFO  @ Wed, 18 Oct 2023 04:49:56: label	D9_rep3_SSEA5_hi 
+INFO  @ Wed, 18 Oct 2023 04:49:56: reads	749665 
+INFO  @ Wed, 18 Oct 2023 04:49:56: mappedreads	648788 
+INFO  @ Wed, 18 Oct 2023 04:49:56: totalsgrnas	2219 
+INFO  @ Wed, 18 Oct 2023 04:49:56: zerosgrnas	17 
+INFO  @ Wed, 18 Oct 2023 04:49:56: giniindex	0.1457890172896904 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Summary of file /broad/blainey_lab/Mo/projects/epigenetic_screens/oPS_EpiKDLv3_1_library/iPS_CRISPRi_lib/20230912_1157-2_R1.C03_oPS_EpiKDL_v3_1_SSEA5_Differentiation_Screen_miniseq/fastq/D9_rep3_SSEA5_low_S5_R1_001.fastq: 
+INFO  @ Wed, 18 Oct 2023 04:49:56: label	D9_rep3_SSEA5_low 
+INFO  @ Wed, 18 Oct 2023 04:49:56: reads	251545 
+INFO  @ Wed, 18 Oct 2023 04:49:56: mappedreads	219212 
+INFO  @ Wed, 18 Oct 2023 04:49:56: totalsgrnas	2219 
+INFO  @ Wed, 18 Oct 2023 04:49:56: zerosgrnas	53 
+INFO  @ Wed, 18 Oct 2023 04:49:56: giniindex	0.18973193163605861 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Loading Rnw template file: /broad/blainey_lab/Mo/mageck_env/lib/python3.7/site-packages/mageck/count_report.Rmd. 
+INFO  @ Wed, 18 Oct 2023 04:49:56: Loading Rnw template file: /broad/blainey_lab/Mo/mageck_env/lib/python3.7/site-packages/mageck/fastq_template.Rnw. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Parameters: /broad/blainey_lab/Mo/mageck_env/bin/mageck test -k /broad/blainey_lab/Mo/projects/epigenetic_screens/github/iPS_CRISPRi_Screens/SSEA5_differentiation_screen/mageck_output/count/iPS_SSEA5_D9_CRISPRi.count.txt -t D9_rep1_SSEA5_low,D9_rep2_SSEA5_low,D9_rep3_SSEA5_low -c D9_rep1_SSEA5_hi,D9_rep2_SSEA5_hi,D9_rep3_SSEA5_hi -n iPS_SSEA5_D9_CRISPRi --norm-method none --paired --control-sgrna /broad/blainey_lab/Mo/projects/epigenetic_screens/github/iPS_CRISPRi_Screens/epifactors_sgRNA_library/non_targeting_control_sgRNAs_mageck.txt 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Welcome to MAGeCK v0.5.9.5. Command: test 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Loading count table from /broad/blainey_lab/Mo/projects/epigenetic_screens/github/iPS_CRISPRi_Screens/SSEA5_differentiation_screen/mageck_output/count/iPS_SSEA5_D9_CRISPRi.count.txt  
+INFO  @ Wed, 18 Oct 2023 04:49:58: Processing 1 lines.. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Loaded 2219 records. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: 46 out of 46 control sgRNAs are found in count table. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Loading Rnw template file: /broad/blainey_lab/Mo/mageck_env/lib/python3.7/site-packages/mageck/test_report.Rmd. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Loading R template file: /broad/blainey_lab/Mo/mageck_env/lib/python3.7/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Loading R template file: /broad/blainey_lab/Mo/mageck_env/lib/python3.7/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Loading Rnw template file: /broad/blainey_lab/Mo/mageck_env/lib/python3.7/site-packages/mageck/plot_template.Rnw. 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Treatment samples:D9_rep1_SSEA5_low,D9_rep2_SSEA5_low,D9_rep3_SSEA5_low 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Treatment sample index:1,3,5 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Control samples:D9_rep1_SSEA5_hi,D9_rep2_SSEA5_hi,D9_rep3_SSEA5_hi 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Control sample index:0,2,4 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Final size factor: 1.0 1.0 1.0 1.0 1.0 1.0 
+INFO  @ Wed, 18 Oct 2023 04:49:58: The updated negative control ID file is:iPS_SSEA5_D9_CRISPRi.negctrl_ids.txt 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Detecting outliers from variance estimation.. Avg read count:[224.5], Var: [43291.53087439904] 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Skipping 23 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Before RRA, 26 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Use qnorm to reversely calculate sgRNA scores ... 
+INFO  @ Wed, 18 Oct 2023 04:49:58: Running command: RRA -i iPS_SSEA5_D9_CRISPRi.plow.txt -o iPS_SSEA5_D9_CRISPRi.gene.low.txt -p 0.5 --control iPS_SSEA5_D9_CRISPRi.negctrl_ids.txt --skip-gene NA --skip-gene na  
+INFO  @ Wed, 18 Oct 2023 04:50:02: Command message: 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   139 control sequences loaded. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Skipping gene na for permutation ... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Reading input file... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Summary: 6631 sgRNAs, 718 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Computing lo-values for each group... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Skipping gene NO-TARGET for permutation ... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Warning: sgRNA  not found in the ranked list.  
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Computing false discovery rate... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Increase the number of permutations to 140 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Total # control sgRNAs: 138 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 6 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 7 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 8 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 9 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 12 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 15 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Permuting genes with 30 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Number of genes under FDR adjustment: 718 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Saving to output file... 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Suppressing the output of gene NO-TARGET since it is negative ontrol genes. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   RRA completed. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Groups deletion complete. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   Lists deletion complete. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:   ControlSeqPercentile deletion complete. 
+INFO  @ Wed, 18 Oct 2023 04:50:02:    
+INFO  @ Wed, 18 Oct 2023 04:50:02: End command message. 
+INFO  @ Wed, 18 Oct 2023 04:50:02: Running command: RRA -i iPS_SSEA5_D9_CRISPRi.phigh.txt -o iPS_SSEA5_D9_CRISPRi.gene.high.txt -p 0.16483185039963807 --control iPS_SSEA5_D9_CRISPRi.negctrl_ids.txt --skip-gene NA --skip-gene na  
+INFO  @ Wed, 18 Oct 2023 04:50:03: Command message: 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   139 control sequences loaded. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Skipping gene na for permutation ... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Reading input file... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Summary: 6631 sgRNAs, 718 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Computing lo-values for each group... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Skipping gene NO-TARGET for permutation ... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Warning: sgRNA  not found in the ranked list.  
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Computing false discovery rate... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Increase the number of permutations to 140 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Total # control sgRNAs: 138 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 6 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 7 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 8 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 9 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 12 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 15 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Permuting genes with 30 sgRNAs... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Number of genes under FDR adjustment: 718 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Saving to output file... 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Suppressing the output of gene NO-TARGET since it is negative ontrol genes. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   RRA completed. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Groups deletion complete. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   Lists deletion complete. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:   ControlSeqPercentile deletion complete. 
+INFO  @ Wed, 18 Oct 2023 04:50:03:    
+INFO  @ Wed, 18 Oct 2023 04:50:03: End command message. 
+INFO  @ Wed, 18 Oct 2023 04:50:03: Loading top 10 genes from iPS_SSEA5_D9_CRISPRi.gene.low.txt: SPOP,PHIP,SIN3B,C11orf30,SNAI2,ARID1A,CDK2,CHD2,SPEN,SET 
+INFO  @ Wed, 18 Oct 2023 04:50:03: Loading top 10 genes from iPS_SSEA5_D9_CRISPRi.gene.high.txt: PAXIP1,PRDM14,ZMYM3,PAGR1,UCHL5,SETD1B,EHMT2,CCDC101,TADA1,EHMT1 
+INFO  @ Wed, 18 Oct 2023 04:50:03: Running command: rm iPS_SSEA5_D9_CRISPRi.plow.txt 
+INFO  @ Wed, 18 Oct 2023 04:50:03: Running command: rm iPS_SSEA5_D9_CRISPRi.phigh.txt 
+INFO  @ Wed, 18 Oct 2023 04:50:03: Running command: rm iPS_SSEA5_D9_CRISPRi.gene.low.txt 
+INFO  @ Wed, 18 Oct 2023 04:50:03: Running command: rm iPS_SSEA5_D9_CRISPRi.gene.high.txt 
