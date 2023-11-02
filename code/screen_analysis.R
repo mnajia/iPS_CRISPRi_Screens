@@ -14,6 +14,7 @@ library(GGally)
 library(edgeR)
 library(ineq)
 library(dplyr)
+library(stringr)
 library(ComplexHeatmap)
 library(MAGeCKFlute)
 
@@ -39,10 +40,10 @@ get_density <- function(x, y, ...) {
 
 
 ### Pre-processing ###
+
+#compile raw sgRNA counts for all samples 
 sgrnas_lib <- fread("./epifactors_sgRNA_library/EpiFactors_CRISPRi_lib_v3.tsv", data.table = FALSE)
 sgrna_counts <- sgrnas_lib[, c("sgRNA_ID", "sgRNA_Sequence", "Gene_Symbol")]
-
-#compile sample counts into one data frame 
 counts_folder <- paste0(base_dir, "sgRNA_counts")
 
 for (val in list.files(path = counts_folder, pattern = ".rds")) {
@@ -50,16 +51,16 @@ for (val in list.files(path = counts_folder, pattern = ".rds")) {
   sgrna_counts[,sample_name] <- readRDS(file = paste(counts_folder, val, sep = "/"))$sample
 }
 
-#CPM normalization 
+#CPM normalization of raw counts 
 cpm.df <- cpm(sgrna_counts[,4:ncol(sgrna_counts)]+1) 
 sgrna_cpms <- sgrna_counts
 sgrna_cpms[,4:ncol(sgrna_cpms)] <- as.data.frame(cpm.df)
 
-#write to disk 
+#save sgRNA counts and CPM matrices
 saveRDS(sgrna_counts, file = paste0(base_dir, "sgRNA_counts_table.rds"))
 saveRDS(sgrna_cpms, file =  paste0(base_dir, "sgRNA_cpm_table.rds"))
 
-#output counts and CPM matrices for supplemental tables 
+#output sgRNA counts and CPM matrices for supplemental tables 
 write.table(sgrna_counts, file = paste0(base_dir, "sgRNA_counts_table.tsv"), 
             quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
 
@@ -67,9 +68,10 @@ write.table(sgrna_cpms, file = paste0(base_dir, "sgRNA_cpm_table.tsv"),
             quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
 
 
+
 ### Quality Control ###
 
-#sgRNA abundance of plasmid versus iPS gDNA libraries 
+#sgRNA abundance in plasmid versus D0 iPS gDNA libraries 
 sgrna_cpms$density <- get_density(sgrna_cpms$plasmid_lib, sgrna_cpms$D0_iPS_1157.2_P38, n = 100)
 
 pdf(paste0(output_dir, "qc_cpm_plasmid_v_D0_iPS_gDNA_libs.pdf"), width = 4, height = 4, useDingbats = FALSE)
@@ -97,8 +99,7 @@ lib_cor <- cor(sgrna_cpms$plasmid_lib, sgrna_cpms$D0_iPS_1157.2_P38, method = "p
 print(lib_cor)
 #r = 0.835346
 
-
-#lorenz plot of plasmid library distribution 
+#lorenz plot of the plasmid library 
 neworder <- sgrna_cpms[order(sgrna_cpms$plasmid_lib),]
 
 lcolc <- Lc(sgrna_cpms$plasmid_lib)
@@ -128,8 +129,7 @@ skewness_ratio <- qs[2]/qs[1]
 print(skewness_ratio)
 #skew ratio = 3.481969
 
-
-#lorenz plot of iPS gDNA library distribution 
+#lorenz plot of the D0 iPS gDNA library 
 neworder <- sgrna_cpms[order(sgrna_cpms$D0_iPS_1157.2_P38),]
 
 lcolc <- Lc(sgrna_cpms$D0_iPS_1157.2_P38)
@@ -142,7 +142,7 @@ ggplot(lcdf, aes(x = Uprob, y = L)) +
   geom_line(aes(x = p, y = p)) +
   scale_x_continuous(breaks=c(0,0.25,0.5,0.75,1)) + scale_y_continuous(breaks=c(0,0.25,0.5,0.75,1)) +
   theme_bw() + 
-  labs(title="Lorenz Curve of sgRNA Representation\nD0 iPS gDNA Library", x="Descending sgRNA Abundance Rank", y = "Cumulative Fraction of Reads") +
+  labs(title="Lorenz Curve of sgRNA Representation\nD0 iPS Genomic DNA", x="Descending sgRNA Abundance Rank", y = "Cumulative Fraction of Reads") +
   theme(plot.title = element_text(hjust = 0.5), 
         axis.text.x = element_text(colour = "black"),
         axis.text.y = element_text(colour = "black"))
@@ -159,16 +159,14 @@ skewness_ratio <- qs[2]/qs[1]
 print(skewness_ratio)
 #skew ratio = 2.691088
 
+#plot pairwise sgRNA abundance across all samples
+ggplot2::theme_set(ggplot2::theme_bw())
 
-#plot pairwise sgRNA abundance across all conditions
 pdf(paste0(output_dir, "qc_pairwise_sgrna_abundance.pdf"), width = 10, height = 10, useDingbats = FALSE)
-
 ggpairs(log10(sgrna_cpms[,4:(ncol(sgrna_cpms)-1)]))
-
 dev.off()
 
-
-#determine concordance of replicate screens
+#determine concordance of sgRNA abundances across screen replicates
 res <- cor(sgrna_cpms[,c("D9_rep1_SSEA5_hi", "D9_rep1_SSEA5_low", "D9_rep2_SSEA5_hi", "D9_rep2_SSEA5_low", "D9_rep3_SSEA5_hi", "D9_rep3_SSEA5_low")])
 
 column_ha = HeatmapAnnotation(Sample = factor( str_split_fixed(colnames(res), pattern = "_", n=3)[,3], levels = c("SSEA5_low","SSEA5_hi") ), 
@@ -209,7 +207,7 @@ sgrna_cpms$CS_rep1 <- log2(sgrna_cpms$D9_rep1_SSEA5_low / sgrna_cpms$D9_rep1_SSE
 sgrna_cpms$CS_rep2 <- log2(sgrna_cpms$D9_rep2_SSEA5_low / sgrna_cpms$D9_rep2_SSEA5_hi)
 sgrna_cpms$CS_rep3 <- log2(sgrna_cpms$D9_rep3_SSEA5_low / sgrna_cpms$D9_rep3_SSEA5_hi)
 
-#rename non-target controls so that they aren't collapsed 
+#rename non-targeting control sgRNAs so that they aren't collapsed 
 inds <- sgrna_cpms$Gene_Symbol == "NO-TARGET"
 sgrna_cpms[inds,"Gene_Symbol"] <- paste0(sgrna_cpms[inds,"Gene_Symbol"], c(1:sum(inds)))
 
@@ -220,11 +218,12 @@ df.cs$cs_rep2 <- aggregate(sgrna_cpms$CS_rep2, list(sgrna_cpms$Gene_Symbol), FUN
 df.cs$cs_rep3 <- aggregate(sgrna_cpms$CS_rep3, list(sgrna_cpms$Gene_Symbol), FUN=mean)$x
 rownames(df.cs) <- df.cs$gene
 
+#isolate hits from MAGeCK pipeline (log2 fold change > 1 and FDR < 0.05)
+df.hits <- gene_summary %>% filter(`pos|fdr` < 0.05 & `pos|lfc` > 1)
+
 #visualize MAGeCK-defined screen hits
 df.cs$highlight <- "Not a hit"
-df.hits <- gene_summary %>% filter(`pos|fdr` < 0.05 & `pos|lfc` > 1)
-hits <- df.cs$gene %in% df.hits$id
-df.cs[hits, "highlight"] <- "Hit"
+df.cs[ df.cs$gene %in% df.hits$id, "highlight"] <- "Hit"
 df.cs[grepl("NO-TARGET", df.cs$gene), "highlight"] <- "Non-targeting control"
 df.cs$highlight <- factor(df.cs$highlight, levels = c("Not a hit", "Non-targeting control", "Hit"))
 df.cs <- df.cs[is.finite(rowSums(df.cs[,c("cs_rep1", "cs_rep2", "cs_rep3")])),]
@@ -262,16 +261,102 @@ ggplot(df.cs %>% arrange(highlight), aes(x = cs_rep1, y = cs_rep2, color = highl
 
 dev.off()
 
+#STRING analysis of hits 
+library(STRINGdb)
+
+#full STRING network
+string_db <- STRINGdb$new(version = "11.5", 
+                          species = 9606, 
+                          score_threshold = 400, 
+                          network_type = "full", 
+                          input_directory = "")
+mapped <- string_db$map(df.hits, "id", removeUnmappedRows = TRUE)
+string_hits <- mapped$STRING_id
+
+pdf(paste0(output_dir, "D9_SSEA5_CRISPRi_screen_STRING_full_network_score400_all_hits.pdf"), width = 5, height = 5, useDingbats = FALSE)
+string_db$plot_network(string_hits)
+dev.off()
+
+clustersList <- string_db$get_clusters(mapped$STRING_id)
+
+pdf(paste0(output_dir, "D9_SSEA5_CRISPRi_screen_STRING_full_network_score400_clusters.pdf"), width = 5, height = 8, useDingbats = FALSE)
+par(mfrow=c(3,2))
+for(i in seq(1:5)){
+  string_db$plot_network(clustersList[[i]])
+}
+dev.off()
+
+enrichment <- string_db$get_enrichment( string_hits )
+c(11,15,16,17,18,19,21,22,24,25,29)
+
+#physical protein interaction network
+string_db <- STRINGdb$new(version = "11.5", 
+                          species = 9606, 
+                          score_threshold = 400, 
+                          network_type = "physical",
+                          input_directory = "")
+mapped <- string_db$map(df.hits, "id", removeUnmappedRows = TRUE)
+string_hits <- mapped$STRING_id
+
+pdf(paste0(output_dir, "D9_SSEA5_CRISPRi_screen_STRING_physical_network_score400_all_hits.pdf"), width = 5, height = 5, useDingbats = FALSE)
+string_db$plot_network(string_hits)
+dev.off()
+
+clustersList <- string_db$get_clusters(mapped$STRING_id)
+
+pdf(paste0(output_dir, "D9_SSEA5_CRISPRi_screen_STRING_physical_network_score400_clusters.pdf"), width = 5, height = 8, useDingbats = FALSE)
+par(mfrow=c(3,2))
+for(i in seq(1:6)){
+  string_db$plot_network(clustersList[[i]])
+}
+dev.off()
+
+
+
+
+
+
 
 #perform enrichment analysis on screen hits 
+genelist = grra$Score
+names(genelist) = grra$id
+genelist = sort(genelist, decreasing = TRUE)
+head(genelist)
+hgtRes1 = EnrichAnalyzer(genelist, method = "HGT", 
+                         type = "Pathway", organism = "hsa")
+head(hgtRes1@result)
+
+barplot(hgtRes1, showCategory = 5)
+
+gseRes1 = EnrichAnalyzer(genelist, method = "GSEA", type = "Pathway", organism = "hsa")
+
+idx = which(gseRes1$NES>0)[1]
+gseaplot(gseRes1, geneSetID = idx, title = gseRes1$Description[idx])
+
+
+
+
+#epifactors_main <- fread(file = "./epifactors_sgRNA_library/EpiGenes_main_v1.7.3.tsv", data.table = FALSE)
+#rownames(epifactors_main) <- epifactors_main$HGNC_symbol
+
+#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Function", "HGNC_symbol")], Function, sep=',') %>% as.data.frame()
+#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Modification", "HGNC_symbol")], Modification, sep=',') %>% as.data.frame()
+#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Complex_name", "HGNC_symbol")], Complex_name, sep=',') %>% as.data.frame()
+#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Target", "HGNC_symbol")], Target, sep=',') %>% as.data.frame()
+#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Specific_target", "HGNC_symbol")], Specific_target, sep=',') %>% as.data.frame()
+#colnames(df.epifunctions) <- c("term", "gene")
+
+#ans.tf <- enricher(df.hits$id, TERM2GENE=df.epifunctions)
+
+
 
 
 
 
 #plot sgRNA ranks for select genes 
 ino80 <- c("ACTR5", "INO80C", "INO80E", "UCHL5", "NFRKB")
-prc <- c("RNF2", "EZH2", "CBX3", "PCGF3", "ASXL2", "CBX2", "L3MBTL2")
-heterochromatin <- c("EHMT2", "EHMT1", "SETDB1", "ATF7IP", "MBD6", "MPHOSPH8")
+prc <- c("RNF2", "EZH2", "PCGF3", "ASXL2", "CBX2", "L3MBTL2")
+heterochromatin <- c("EHMT2", "EHMT1", "SETDB1", "ATF7IP", "CBX3", "MBD6", "MPHOSPH8")
 saga <- c("TAF6L", "TAF5L", "KAT2A", "TADA2B", "CCDC101", "SUPT7L", "TADA3", "TADA1")
 #e2f6 <- c("EHMT2", "EZH2", "EHMT1", "CBX3", "RNF2", "L3MBTL2")
 
