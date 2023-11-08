@@ -23,6 +23,7 @@ library(MAGeCKFlute)
 ### Initialize ###
 
 #directories
+#assumes the current working directory is the base directory of the github repo
 base_dir <- "./SSEA5_differentiation_screen/"
 output_dir <- "./SSEA5_differentiation_screen/screen_analysis/"
 
@@ -261,7 +262,7 @@ ggplot(df.cs %>% arrange(highlight), aes(x = cs_rep1, y = cs_rep2, color = highl
 
 dev.off()
 
-#STRING analysis of hits 
+#STRING analysis of screen hits 
 library(STRINGdb)
 
 #full STRING network
@@ -286,9 +287,6 @@ for(i in seq(1:5)){
 }
 dev.off()
 
-enrichment <- string_db$get_enrichment( string_hits )
-c(11,15,16,17,18,19,21,22,24,25,29)
-
 #physical protein interaction network
 string_db <- STRINGdb$new(version = "11.5", 
                           species = 9606, 
@@ -311,57 +309,38 @@ for(i in seq(1:6)){
 }
 dev.off()
 
+#STRING enrichment
+enrichment <- string_db$get_enrichment( string_hits )
+#inds <- c(4,7,9,10,11,15,16,17,18,19,21,22,24,25,26,29,31,34,38,56,57,59,60,73,95,96,98,99)
+inds <- c(11,15,16,19,21,22,24,25,26,31,34,38,56,57,59,60,73,95,96)
+df.string_enrich <- enrichment[inds, c("category", "term", "description", "preferredNames", "number_of_genes", "number_of_genes_in_background", "fdr")]
+df.string_enrich$description <- paste0(df.string_enrich$description, " (", df.string_enrich$term, ")")
+df.string_enrich$logFDR = -log10(df.string_enrich$fdr)
+df.string_enrich <- df.string_enrich[order(df.string_enrich$logFDR, decreasing = FALSE),]
 
+pdf(paste0(output_dir, "D9_SSEA5_CRISPRi_screen_STRING_GO_enrichment.pdf"), width = 5, height = 5, useDingbats = FALSE)
 
+BarView(df.string_enrich, "description", 'logFDR') + 
+  labs(x = NULL, y = "-log10(FDR)") + 
+  ylim(0,20) + 
+  coord_flip() + 
+  theme_classic()
 
+dev.off()
 
-
-
-#perform enrichment analysis on screen hits 
-genelist = grra$Score
-names(genelist) = grra$id
-genelist = sort(genelist, decreasing = TRUE)
-head(genelist)
-hgtRes1 = EnrichAnalyzer(genelist, method = "HGT", 
-                         type = "Pathway", organism = "hsa")
-head(hgtRes1@result)
-
-barplot(hgtRes1, showCategory = 5)
-
-gseRes1 = EnrichAnalyzer(genelist, method = "GSEA", type = "Pathway", organism = "hsa")
-
-idx = which(gseRes1$NES>0)[1]
-gseaplot(gseRes1, geneSetID = idx, title = gseRes1$Description[idx])
-
-
-
-
-#epifactors_main <- fread(file = "./epifactors_sgRNA_library/EpiGenes_main_v1.7.3.tsv", data.table = FALSE)
-#rownames(epifactors_main) <- epifactors_main$HGNC_symbol
-
-#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Function", "HGNC_symbol")], Function, sep=',') %>% as.data.frame()
-#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Modification", "HGNC_symbol")], Modification, sep=',') %>% as.data.frame()
-#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Complex_name", "HGNC_symbol")], Complex_name, sep=',') %>% as.data.frame()
-#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Target", "HGNC_symbol")], Target, sep=',') %>% as.data.frame()
-#df.epifunctions <- tidyr::separate_rows(epifactors_main[,c("Specific_target", "HGNC_symbol")], Specific_target, sep=',') %>% as.data.frame()
-#colnames(df.epifunctions) <- c("term", "gene")
-
-#ans.tf <- enricher(df.hits$id, TERM2GENE=df.epifunctions)
-
-
-
-
+write.table(df.string_enrich, file = paste0(output_dir, "STRING_GO_enrichment.tsv"), 
+            quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
 
 
 #plot sgRNA ranks for select genes 
-ino80 <- c("ACTR5", "INO80C", "INO80E", "UCHL5", "NFRKB")
+heterochromatin <- c("MPHOSPH8", "MBD6", "CBX3", "JMJD1C", "ATF7IP", "SETDB1", "EHMT2", "EHMT1")
 prc <- c("RNF2", "EZH2", "PCGF3", "ASXL2", "CBX2", "L3MBTL2")
-heterochromatin <- c("EHMT2", "EHMT1", "SETDB1", "ATF7IP", "CBX3", "MBD6", "MPHOSPH8")
 saga <- c("TAF6L", "TAF5L", "KAT2A", "TADA2B", "CCDC101", "SUPT7L", "TADA3", "TADA1")
+ino80 <- c("ACTR5", "INO80C", "INO80E", "UCHL5", "NFRKB")
 #e2f6 <- c("EHMT2", "EZH2", "EHMT1", "CBX3", "RNF2", "L3MBTL2")
 
 sgRankView(sgrra, 
-           gene = c(ino80, prc, heterochromatin, saga), 
+           gene = c(ino80, saga, prc, heterochromatin), 
            top = 0, 
            bottom = 0, 
            neg_ctrl = "NO-TARGET", 
@@ -370,99 +349,6 @@ sgRankView(sgrra,
            height = 5, 
            filename = paste0(output_dir, "sgRNA_rank_view_hits.pdf")
 )
-
-
-
-
-#enrichment analysis 
-geneList <- grra$Score
-names(geneList) <- grra$id
-enrich = EnrichAnalyzer(geneList = geneList[geneList>0.5], 
-                        method = "HGT", 
-                        type = "KEGG+REACTOME+GOBP+GOMF+GOCC", 
-                        filter = TRUE)
-
-EnrichedView(enrich, mode = 1, top = 20)
-EnrichedView(enrich, mode = 2, top = 20)
-
-enrich = EnrichAnalyzer(geneList = geneList[geneList>0.5], 
-                        method = "HGT", 
-                        type = "Pathway", 
-                        organism = "hsa")
-
-
-
-
-
-enrich = EnrichAnalyzer(geneList = geneList[geneList>0.5], 
-                        method = "ORT", 
-                        type = "KEGG+REACTOME+GOBP+GOMF+GOCC",
-                        filter = TRUE)
-
-
-
-
-
-
-library(clusterProfiler)
-tmp <- gene_summary %>% filter(`pos|fdr` < 0.05 & `pos|lfc` > 0.5)
-
-
-ego <- enrichGO(gene          = tmp$id,
-                #universe      = df.mageck$id,
-                OrgDb         = org.Hs.eg.db,
-                keyType       = "SYMBOL",
-                ont           = "ALL", #BP, MF, CC
-                pAdjustMethod = "BH",
-                pvalueCutoff  = 0.01,
-                qvalueCutoff  = 0.05,
-)
-head(ego)
-
-cnetplot(ego,4)
-barplot(ego)
-
-
-geneList = gene_summary$`pos|lfc`
-names(geneList) = as.character(gene_summary$id)
-geneList = sort(geneList, decreasing = TRUE)
-
-ego3 <- gseGO(geneList     = geneList,
-              OrgDb        = org.Hs.eg.db,
-              ont          = "BP",
-              keyType      = "SYMBOL",
-              #minGSSize    = 100,
-              #maxGSSize    = 500,
-              #pvalueCutoff = 0.05,
-              verbose      = FALSE)
-
-
-gene <- names(geneList)[geneList > 1]
-df.bitr <- bitr(gene, fromType = "SYMBOL", toType = "ENTREZID", OrgDb = org.Hs.eg.db)
-
-kk <- enrichKEGG(gene         = df.bitr$ENTREZID,
-                 organism     = 'hsa',
-                 keyType      = "kegg",
-                 pvalueCutoff = 0.05)
-head(kk)
-
-browseKEGG(kk, 'hsa04110')
-
-library(ReactomePA)
-x <- enrichPathway(gene         = df.bitr$ENTREZID, 
-                   pvalueCutoff = 0.05, 
-                   readable     = TRUE)
-
-head(x)
-
-
-
-
-
-
-
-
-
 
 
 
